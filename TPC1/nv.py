@@ -127,24 +127,50 @@ def doencaBatimento(infoDict):
         batMin +=5
     return dictBatimento
 
+def print_table(data):
+    # Cabeçalho da tabela
+    print("--------------------------------------------------------------")
+    print("| {:^15} | {:^15} |".format("Age Range", "Percentage"))
+    print("--------------------------------------------------------------")
+    
+    # Imprimir as linhas da tabela com os dados passados
+    for key, value in data.items():
+        print("| {:^15} | {:^15.2f}% |".format(key, value))
+        
+    # Rodapé da tabela
+    print("--------------------------------------------------------------")
+
+def print_table2(data):
+    print("{:<20s}{:<20s}".format("Doença", "Colesterol"))
+    print("+--------------------+--------------------+")
+    for key, value in data.items():
+        print("|{:^20s}|{:^20f}|".format(key, value))
+    print("+--------------------+--------------------+")
+
+
 infoDict = parsing("myheart.csv")
 
 # Imprime a porcentagem de homens e mulheres com doença cardíaca
 print("Percentage of men and women with heart disease:")
-print(doencaSexo(infoDict))
+doenca_sexo = doencaSexo(infoDict)
+print_table(doenca_sexo)
 
-# Imprime a porcentagem de doença cardíaca por faixa etária
-print("\nPercentage of heart disease by age group:")
-print(doencaEtario(infoDict))
+# Imprime a porcentagem de pessoas com doença cardíaca por faixa etária
+print("Percentage of people with heart disease by age range:")
+doenca_etario = doencaEtario(infoDict)
+print_table(doenca_etario)
 
-# Imprime a porcentagem de doença cardíaca por nível de colesterol
-print("\nPercentage of heart disease by cholesterol level:")
-print(doencaColesterol(infoDict))
+# Imprime a porcentagem de pessoas com doença cardíaca por nível de colesterol
+print("Percentage of people with heart disease by cholesterol level:")
+doenca_colesterol = doencaColesterol(infoDict)
+print_table2(doenca_colesterol)
 
-# Imprime a porcentagem de doença cardíaca por pressão arterial
-print("\nPercentage of heart disease by blood pressure:")
-print(doencaTensao(infoDict))
+# Imprime a porcentagem de pessoas com doença cardíaca por nível de pressão arterial
+print("Percentage of people with heart disease by blood pressure level:")
+doenca_tensao = doencaTensao(infoDict)
+print_table(doenca_tensao)
 
-# Imprime a porcentagem de doença cardíaca por frequência cardíaca
-print("\nPercentage of heart disease by heart rate:")
-print(doencaBatimento(infoDict))
+# Imprime a porcentagem de pessoas com doença cardíaca por nível de batimentos cardíacos
+print("Percentage of people with heart disease by heart rate level:")
+doenca_batimento = doencaBatimento(infoDict)
+print_table(doenca_batimento)
